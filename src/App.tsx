@@ -1,62 +1,33 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {useState, useEffect} from 'react';
+import '@/App.css';
+import {fetchPhotos, type Photo} from '@api/photos';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [initialPhotos, setInitialPhotos] = useState<Photo[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchDataForPosts = async () => {
+    const getInitialPhotos = async () => {
       try {
-        const response = await fetch('https://api.pexels.com/v1/search?query=nature&page=1', {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: import.meta.env.VITE_API_KEY,
-          },
-        });
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        const postsData = await response.json();
-        console.log(postsData)
+        const photos = await fetchPhotos({});
+        setInitialPhotos(photos);
+        setIsLoading(false);
       } catch (err) {
-        console.log(err)
-        console.log('err')
-      } finally {
-        console.log('finally')
+        console.error(err);
       }
     };
 
-    fetchDataForPosts();
+    getInitialPhotos();
   }, []);
 
+  if (isLoading) return 'Loading...';
+  if (initialPhotos.length === 0) return 'No Photos';
+
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>{initialPhotos.map(({src, alt}) => <div style={{width: 300, height: 300}}><img style={{width: '100%', height: '100%'}} src={src.large} alt={alt}/>
+    </div>)}
+    </div>
+  );
 }
 
-export default App
+export default App;
