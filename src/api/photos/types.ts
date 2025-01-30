@@ -1,5 +1,5 @@
-export type Params = { query?: string; page?: number; }
-export type Photo = {
+export interface Params { query?: string; page?: number; }
+export interface Photo {
   id: number;
   alt: string;
   photographer: string;

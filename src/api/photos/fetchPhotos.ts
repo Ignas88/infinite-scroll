@@ -1,4 +1,4 @@
-import { Photo, Params } from './types.ts';
+import type { Photo, Params } from './types.ts';
 
 const options = {
   method: 'GET',

@@ -1,5 +1,5 @@
-import {useEffect, useState} from 'react';
-import {fetchPhotos, type Photo} from '@api/photos';
+import { useEffect, useState } from 'react';
+import { fetchPhotos, type Photo } from '@api/photos';
 
 export const useInitialPhotos = (): [boolean, Photo[]] => {
   const [initialPhotos, setInitialPhotos] = useState<Photo[]>([]);

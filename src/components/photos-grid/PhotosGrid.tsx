@@ -1,7 +1,8 @@
-import {type FC} from 'react';
-import {useInitialPhotos} from './hooks.ts';
+import { type FC } from 'react';
+import { Spinner } from '@components/commons/spinner';
+import { useInitialPhotos } from './hooks.ts';
+import { GridItem } from './GridItem.tsx';
 import './Grid.css';
-import {Spinner} from '@components/commons/spinner';
 
 const NO_PHOTOS_TEXT = 'Sorry, No Photos found, try again later'
 
@@ -13,18 +14,8 @@ export const PhotosGrid: FC = () => {
 
   return (
     <div className="grid">
-      {initialPhotos.map(({id, src, alt}, index) =>
-        <div key={id} className="grid-item">
-          <picture>
-            <source srcSet={src.small} media="(width <= 40rem)"/>
-            <img
-              srcSet={src.medium}
-              alt={alt}
-              // LCP optimisation
-              loading={index === 0 ? 'eager': 'lazy'}
-            />
-          </picture>
-        </div>
+      {initialPhotos.map((photo, index) =>
+        <GridItem key={photo.id} {...photo} isEager={index === 0} />
       )}
     </div>
   );

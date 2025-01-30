@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import path from "path";
+import {defineConfig} from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import path from 'path';
+import svgr from 'vite-plugin-svgr';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,5 +13,9 @@ export default defineConfig({
       '@components': path.resolve(__dirname, './src/components'),
     },
   },
-  plugins: [react()],
-})
+  plugins: [react(), svgr({
+    // svgr options: https://react-svgr.com/docs/options/
+    svgrOptions: {exportType: 'default', ref: true, svgo: false, titleProp: true},
+    include: '**/*.svg',
+  })],
+});
