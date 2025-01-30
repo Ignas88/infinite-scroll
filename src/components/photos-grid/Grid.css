@@ -14,11 +14,24 @@
 }
 
 .grid-item {
+  height: 276px;
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
   user-select: none;
   position: relative;
+
+  @media screen and (width <= 48rem) {
+    & {
+      height: 246px;
+    }
+  }
+
+  @media screen and (width <= 40rem) {
+    & {
+      height: 115px;
+    }
+  }
 
   img {
     width: 100%;

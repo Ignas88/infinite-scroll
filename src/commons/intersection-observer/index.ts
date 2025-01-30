@@ -1,0 +1,1 @@
+export { useIntersectionObserver } from './hooks.ts'
