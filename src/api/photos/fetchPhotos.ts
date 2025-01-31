@@ -1,4 +1,4 @@
-import type {Photo, Params} from './types.ts';
+import type {Photo, Params, ResponseJSON} from './types.ts';
 
 const options = {
   method: 'GET',
@@ -13,6 +13,6 @@ export const fetchPhotos = async ({query = 'nature', page = 1, per_page = 15}: P
   if (!response.ok) {
     throw new Error(response.statusText);
   }
-  const responseJson = await response.json();
+  const responseJson: ResponseJSON = await response.json();
   return responseJson.photos;
 };
