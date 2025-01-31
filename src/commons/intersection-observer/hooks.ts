@@ -4,9 +4,9 @@ type Options = {
   ref: MutableRefObject<Element | null>;
   threshold?: number;
   triggerOnce?: boolean;
-  onChange: VoidFunction;
+  onView?: VoidFunction;
 }
-export const useIntersectionObserver = ({ref, threshold = 0.5, triggerOnce = true, onChange}: Options) => {
+export const useIntersectionObserver = ({ref, threshold = 0.5, triggerOnce = true, onView}: Options) => {
   useEffect(() => {
     if (!ref.current) return
     if (!('IntersectionObserver' in window)) return
@@ -14,7 +14,7 @@ export const useIntersectionObserver = ({ref, threshold = 0.5, triggerOnce = tru
       (entries: IntersectionObserverEntry[]): void => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            onChange?.()
+            onView?.()
             if (triggerOnce && ref.current) {
               observer.unobserve(ref.current);
             }
@@ -30,7 +30,7 @@ export const useIntersectionObserver = ({ref, threshold = 0.5, triggerOnce = tru
 
   }, [
     triggerOnce,
-    onChange,
+    onView,
     ref,
     threshold,
   ])

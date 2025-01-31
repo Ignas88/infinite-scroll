@@ -57,6 +57,7 @@
 
       .header {
         button {
+          display: flex;
           background: rgba(0, 0, 0, .4);
         }
       }
@@ -68,6 +69,7 @@
       justify-content: flex-end;
 
       button {
+        display: none;
         padding: 0;
         width: 45px;
         height: 45px;
@@ -75,7 +77,6 @@
         background: transparent;
         border: none;
         border-radius: 8px;
-        display: flex;
         align-items: center;
         justify-content: center;
         pointer-events: all;
