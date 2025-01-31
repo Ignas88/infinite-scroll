@@ -11,9 +11,13 @@ const options = {
 export const fetchPhotos = async ({
   query = 'nature',
   page = 1,
-  per_page = 15,
+  per_page = 16,
+  signal,
 }: Params): Promise<Photo[]> => {
-  const response = await fetch(`https://api.pexels.com/v1/search?query=${query}&page=${page}&per_page=${per_page}&orientation=landscape`, options);
+  const response = await fetch(
+    `https://api.pexels.com/v1/search?query=${query}&page=${page}&per_page=${per_page}&orientation=landscape`,
+    {...options, signal}
+  );
   if (!response.ok) {
     throw new Error(response.statusText);
   }

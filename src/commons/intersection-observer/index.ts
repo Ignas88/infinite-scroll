@@ -1,1 +1,1 @@
-export { useIntersectionObserver } from './hooks.ts'
+export { useIntersectionObserver } from './useIntersectionObserver.ts'

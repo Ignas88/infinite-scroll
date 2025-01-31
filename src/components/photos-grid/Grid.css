@@ -2,26 +2,35 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
-  padding: 0 16px;
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+  padding: 0 24px;
+
+  @media screen and (width <= 64rem) {
+    & {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 
   @media screen and (width <= 48rem) {
     & {
-      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 16px;
+      grid-row-gap: 16px;
+      padding: 0 16px;
     }
   }
 }
 
 .grid-item {
   height: 276px;
-  border-radius: 16px;
+  border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
   user-select: none;
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
 
-  @media screen and (width <= 48rem) {
+  @media screen and (width <= 64rem) {
     & {
       height: 246px;
     }
@@ -56,9 +65,8 @@
       opacity: 1;
 
       .header {
-        button {
-          display: flex;
-          background: rgba(0, 0, 0, .4);
+        .favorite {
+          display: inline-flex;
         }
       }
     }
@@ -68,35 +76,29 @@
       display: flex;
       justify-content: flex-end;
 
-      button {
+      .favorite {
+        padding: 8px;
         display: none;
-        padding: 0;
-        width: 45px;
-        height: 45px;
-        color: #ffffff;
-        background: transparent;
-        border: none;
-        border-radius: 8px;
-        align-items: center;
-        justify-content: center;
-        pointer-events: all;
-        cursor: pointer;
-        transition: background-color .1s;
-
-        span {
-          width: 24px;
-          height: 24px;
-        }
       }
     }
     .footer {
-      padding: 12px;
+      padding: 12px 24px;
       display: flex;
       justify-content: flex-start;
+      flex-direction: column;
+
+      .separator {
+        height: 3px;
+        background: #ffffff;
+        width: 25%;
+        margin-bottom: 4px;
+        border-radius: 12px;
+      }
 
       p {
         font-weight: 700;
-        margin: 0 0 0 12px;
+        margin: 0;
+        color: #ffffff;
       }
     }
   }
@@ -110,14 +112,10 @@
   }
   @media screen and (width <= 48rem) {
     .overlay {
-      opacity: 1;
+      background: none;
 
       .header {
         padding: 0;
-
-        button {
-          border-radius: 0 0 0 8px;
-        }
       }
 
       .footer {

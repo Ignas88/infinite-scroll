@@ -25,7 +25,6 @@ export const PhotosGrid: FC = () => {
   }, [setIsLoading, setPage]);
 
   if (!isLoading && page === 1 && photos.length === 0) return <span>{NO_PHOTOS_TEXT}</span>;
-
   return (
     <>
       <div className="grid">

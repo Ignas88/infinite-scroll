@@ -2,6 +2,7 @@ export interface Params {
   query?: string;
   page?: number;
   per_page?: number;
+  signal: AbortSignal;
 }
 export interface Photo {
   id: number;

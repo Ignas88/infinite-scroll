@@ -1,1 +1,1 @@
-export { useSessionStorage } from './hooks.ts'
+export { useSessionStorage } from './useSessionStorage.ts'

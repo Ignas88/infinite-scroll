@@ -30,7 +30,6 @@ export const GridItem: FC<Props> = memo(({
   const imageLoad = isEager ? EAGER_LOAD : (isLazy ? LAZY_LOAD : undefined);
   const ref = useRef(null);
   useIntersectionObserver({ref, onView});
-
   return (
     <div
       ref={isObservable ? ref : undefined}
@@ -47,12 +46,15 @@ export const GridItem: FC<Props> = memo(({
       </picture>
       <div className={`overlay ${isActive ? 'active' : ''}`}>
         <div className="header">
-          <button>
-            <span><HeartIcon/></span>
-          </button>
+          <div className="favorite">
+            <HeartIcon/>
+          </div>
         </div>
         <div className="footer">
-          <p>{photographer}</p>
+          <div>
+            <div className="separator" />
+            <p>{photographer}</p>
+          </div>
         </div>
       </div>
     </div>
