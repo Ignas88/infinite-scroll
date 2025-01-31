@@ -1,7 +1,7 @@
 .spinner {
   width: 112px;
   height: 112px;
-  margin: 0 auto;
+  margin: 24px auto;
   border-radius: 50%;
   background: radial-gradient(farthest-side,#474bff 94%,#0000) top/9px 9px no-repeat,
   conic-gradient(#0000 30%,#474bff);

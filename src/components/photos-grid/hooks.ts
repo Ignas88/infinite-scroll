@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
-import type { Dispatch, SetStateAction } from 'react';
-import { fetchPhotos, type Photo } from '@api/photos';
+import {useEffect, useState} from 'react';
+import type {Dispatch, SetStateAction} from 'react';
+import {fetchPhotos, type Photo} from '@api/photos';
 
-export const usePhotosWithPagination = (): [boolean, Dispatch<SetStateAction<boolean>>, Photo[], number, Dispatch<SetStateAction<number>>] => {
+const PAGE_SIZE = 15;
+export const usePhotosWithPagination = (): [boolean, Dispatch<SetStateAction<boolean>>, Photo[], number, Dispatch<SetStateAction<number>>, number] => {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState(true);
@@ -10,7 +11,7 @@ export const usePhotosWithPagination = (): [boolean, Dispatch<SetStateAction<boo
   useEffect(() => {
     const getPhotos = async () => {
       try {
-        const photosNew = await fetchPhotos({page});
+        const photosNew = await fetchPhotos({page, per_page: PAGE_SIZE});
         setPhotos(prev => [...prev, ...photosNew]);
         setIsLoading(false);
       } catch (err) {
@@ -21,5 +22,5 @@ export const usePhotosWithPagination = (): [boolean, Dispatch<SetStateAction<boo
     getPhotos();
   }, [page]);
 
-  return [isLoading, setIsLoading, photos, page, setPage]
-}
+  return [isLoading, setIsLoading, photos, page, setPage, PAGE_SIZE];
+};
