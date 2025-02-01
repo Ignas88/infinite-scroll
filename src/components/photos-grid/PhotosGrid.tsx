@@ -6,10 +6,11 @@ import {GridItem} from './GridItem.tsx';
 import './Grid.css';
 
 const NO_PHOTOS_TEXT = 'Sorry, No Photos found, try again later';
+const STORAGE_KEY = 'favorites';
 
 export const PhotosGrid: FC = () => {
   const [isLoading, setIsLoading, photos, page, setPage, pageSize] = usePhotosWithPagination();
-  const [value, setValue] = useSessionStorage<number[]>('favorites', []);
+  const [value, setValue] = useSessionStorage<number[]>(STORAGE_KEY, []);
 
   const handleClick = useCallback((id: number) => {
     if (value.includes(id)) {
