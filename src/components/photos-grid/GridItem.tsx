@@ -10,7 +10,7 @@ const LAZY_LOAD = 'lazy';
 interface Props extends Photo {
   isLazy?: boolean;
   isEager?: boolean;
-  isActive: boolean;
+  isActive?: boolean;
   isObservable: boolean;
   onClick: VoidFunction;
   onView?: VoidFunction;
@@ -22,10 +22,11 @@ export const GridItem: FC<Props> = memo(({
   photographer,
   isEager,
   isLazy,
-  isActive,
+  isActive = false,
   isObservable,
   onClick,
   onView,
+  id,
 }) => {
   const imageLoad = isEager ? EAGER_LOAD : (isLazy ? LAZY_LOAD : undefined);
   const ref = useRef(null);
@@ -35,6 +36,7 @@ export const GridItem: FC<Props> = memo(({
       ref={isObservable ? ref : undefined}
       className="grid-item"
       onClick={onClick}
+      data-testid={id}
     >
       <picture>
         <source srcSet={src.small} media="(width <= 40rem)"/>
