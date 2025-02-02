@@ -1,5 +1,5 @@
-import { useCallback, useState, useEffect } from 'react';
-import type { Dispatch, SetStateAction } from 'react';
+import {useCallback, useState, useEffect} from 'react';
+import type {Dispatch, SetStateAction} from 'react';
 
 const serializer = <T>(value: T): string => JSON.stringify(value);
 const deserializer =

@@ -1,1 +1,1 @@
-export { PhotosGrid } from './PhotosGrid.tsx'
+export {PhotosGrid} from './PhotosGrid.tsx'
