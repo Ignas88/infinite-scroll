@@ -8,13 +8,13 @@ type Options = {
 }
 export const useIntersectionObserver = ({ref, threshold = 0.5, triggerOnce = true, onView}: Options) => {
   useEffect(() => {
-    if (!ref.current) return
-    if (!('IntersectionObserver' in window)) return
+    if (!ref.current) return;
+    if (!('IntersectionObserver' in window)) return;
     const observer = new IntersectionObserver(
       (entries: IntersectionObserverEntry[]): void => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            onView?.()
+            onView?.();
             if (triggerOnce && ref.current) {
               observer.unobserve(ref.current);
             }
@@ -22,10 +22,10 @@ export const useIntersectionObserver = ({ref, threshold = 0.5, triggerOnce = tru
         })
       }, {threshold})
 
-    observer.observe(ref.current)
+    observer.observe(ref.current);
 
     return () => {
-      observer.disconnect()
+      observer.disconnect();
     }
 
   }, [

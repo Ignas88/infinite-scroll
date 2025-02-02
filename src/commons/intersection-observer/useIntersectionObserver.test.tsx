@@ -13,7 +13,7 @@ const Mock = () => {
 }
 describe('useIntersectionObserver()', () => {
   afterEach(() => {
-    jest.clearAllMocks()
+    jest.clearAllMocks();
   })
   it('should fire onView callBack when observed element becomes visible', () => {
     render(<Mock />);
