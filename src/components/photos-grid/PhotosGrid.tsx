@@ -9,7 +9,7 @@ const NO_PHOTOS_TEXT = 'Sorry, No Photos found, try again later';
 const STORAGE_KEY = 'favorites';
 
 export const PhotosGrid: FC = () => {
-  const [isLoading, setIsLoading, photos, page, setPage, pageSize] = usePhotosWithPagination();
+  const [isLoading, hasMore, photos, page, setPage, pageSize] = usePhotosWithPagination();
   const [value, setValue] = useSessionStorage<number[]>(STORAGE_KEY, []);
 
   const handleClick = useCallback((id: number) => {
@@ -21,9 +21,8 @@ export const PhotosGrid: FC = () => {
   }, [setValue, value]);
 
   const handleView = useCallback(() => {
-    setIsLoading(true);
     setPage((page) => page + 1);
-  }, [setIsLoading, setPage]);
+  }, [setPage]);
 
   if (!isLoading && page === 1 && photos.length === 0) return <span>{NO_PHOTOS_TEXT}</span>;
   return (
@@ -37,7 +36,7 @@ export const PhotosGrid: FC = () => {
             isLazy={index + 1 > pageSize}
             onClick={() => handleClick(photo.id)}
             isActive={value.includes(photo.id)}
-            isObservable={index === photos.length - 1}
+            isObservable={index === photos.length - 1 && hasMore}
             onView={handleView}
           />
         )}
