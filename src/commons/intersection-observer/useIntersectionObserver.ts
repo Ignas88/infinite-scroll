@@ -1,4 +1,4 @@
-import {useEffect, type MutableRefObject} from 'react';
+import { useEffect, type MutableRefObject } from 'react';
 
 type Options = {
   ref: MutableRefObject<Element | null>;
@@ -19,19 +19,19 @@ export const useIntersectionObserver = ({ref, threshold = 0.5, triggerOnce = tru
               observer.unobserve(ref.current);
             }
           }
-        })
-      }, {threshold})
+        });
+      }, {threshold});
 
     observer.observe(ref.current);
 
     return () => {
       observer.disconnect();
-    }
+    };
 
   }, [
     triggerOnce,
     onView,
     ref,
     threshold,
-  ])
-}
+  ]);
+};

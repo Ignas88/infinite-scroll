@@ -1,1 +1,1 @@
-export {useIntersectionObserver} from './useIntersectionObserver.ts';
+export { useIntersectionObserver } from './useIntersectionObserver.ts';

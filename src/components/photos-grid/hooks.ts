@@ -1,6 +1,6 @@
-import {useEffect, useState, useRef} from 'react';
-import type {Dispatch, SetStateAction} from 'react';
-import {fetchPhotos, type Photo} from '@api/photos';
+import { useEffect, useState, useRef } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
+import { fetchPhotos, type Photo } from '@api/photos';
 
 const PAGE_SIZE = 16;
 type ReturnValue = [

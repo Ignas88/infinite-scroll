@@ -1,4 +1,4 @@
-import type {Photo, Params, ResponseJSON} from './types.ts';
+import type { Photo, Params, ResponseJSON } from './types.ts';
 
 const options = {
   method: 'GET',
@@ -6,7 +6,7 @@ const options = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
     Authorization: import.meta.env.VITE_API_KEY,
-  }
+  },
 };
 export const fetchPhotos = async ({
   query = 'nature',
@@ -16,7 +16,7 @@ export const fetchPhotos = async ({
 }: Params): Promise<Photo[]> => {
   const response = await fetch(
     `${import.meta.env.VITE_API_ENDPOINT_URL}?query=${query}&page=${page}&per_page=${per_page}&orientation=landscape`,
-    {...options, signal}
+    {...options, signal},
   );
   if (!response.ok) {
     throw new Error(response.statusText);

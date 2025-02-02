@@ -1,7 +1,7 @@
-import {type FC, memo, useRef} from 'react';
-import {type Photo} from '@api/photos';
+import { type FC, memo, useRef } from 'react';
+import { type Photo } from '@api/photos';
 import HeartIcon from '@assets/heart.svg';
-import {useIntersectionObserver} from '@commons/intersection-observer';
+import { useIntersectionObserver } from '@commons/intersection-observer';
 import './Grid.css';
 
 const EAGER_LOAD = 'eager';
@@ -54,7 +54,7 @@ export const GridItem: FC<Props> = memo(({
         </div>
         <div className="footer">
           <div>
-            <div className="separator" />
+            <div className="separator"/>
             <p>{photographer}</p>
           </div>
         </div>

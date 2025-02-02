@@ -1,5 +1,5 @@
-import {useCallback, useState, useEffect} from 'react';
-import type {Dispatch, SetStateAction} from 'react';
+import { useCallback, useState, useEffect } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 
 const serializer = <T>(value: T): string => JSON.stringify(value);
 const deserializer =
@@ -20,7 +20,7 @@ const deserializer =
     }
 
     return parsed as T;
-  }
+  };
 
 export const useSessionStorage = <T>(key: string, initialValue: T | (() => T)): [T, Dispatch<SetStateAction<T>>] => {
   const readValue = useCallback((): T => {
@@ -34,7 +34,7 @@ export const useSessionStorage = <T>(key: string, initialValue: T | (() => T)): 
       console.warn(`Error reading sessionStorage key “${key}”:`, error);
       return initialValueToUse;
     }
-  }, [initialValue, key])
+  }, [initialValue, key]);
 
   const [storedValue, setStoredValue] = useState(() => readValue());
 
@@ -47,12 +47,12 @@ export const useSessionStorage = <T>(key: string, initialValue: T | (() => T)): 
     } catch (error) {
       console.warn(`Error setting sessionStorage key “${key}”:`, error);
     }
-  }, [readValue, key])
+  }, [readValue, key]);
 
   useEffect(() => {
     setStoredValue(readValue());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key])
+  }, [key]);
 
   return [storedValue, setValue];
-}
+};

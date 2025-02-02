@@ -1,1 +1,1 @@
-export {useSessionStorage} from './useSessionStorage.ts';
+export { useSessionStorage } from './useSessionStorage.ts';
