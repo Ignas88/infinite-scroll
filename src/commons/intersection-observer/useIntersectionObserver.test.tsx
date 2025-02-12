@@ -17,10 +17,21 @@ describe('useIntersectionObserver()', () => {
   });
   it('should fire onView callBack when observed element becomes visible', () => {
     render(<Mock/>);
+    const observable = screen.getByTestId(TEST_ID);
     act(() => {
-      io.enterNode(screen.getByTestId(TEST_ID));
+      io.enterNode(observable);
     });
-    expect(screen.getByTestId(TEST_ID)).toBeInTheDocument();
+    expect(observable).toBeInTheDocument();
     expect(callback).toHaveBeenCalled();
+  });
+  it('should fire onView callBack only ONCE - when observed element becomes visible first time', () => {
+    render(<Mock/>);
+    const observable = screen.getByTestId(TEST_ID);
+    act(() => {
+      io.enterNode(observable);
+      io.leaveNode(observable);
+      io.enterNode(observable);
+    });
+    expect(callback).toHaveBeenCalledTimes(1);
   });
 });
