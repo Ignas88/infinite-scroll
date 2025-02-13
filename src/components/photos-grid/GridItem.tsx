@@ -4,12 +4,9 @@ import HeartIcon from '@assets/heart.svg';
 import { useIntersectionObserver } from '@commons/intersection-observer';
 import './Grid.css';
 
-const EAGER_LOAD = 'eager';
-const LAZY_LOAD = 'lazy';
-
 interface Props extends Photo {
   isLazy?: boolean;
-  isEager?: boolean;
+  isFirst?: boolean;
   isActive?: boolean;
   isObservable: boolean;
   onClick: VoidFunction;
@@ -20,7 +17,7 @@ export const GridItem: FC<Props> = memo(({
   src,
   alt,
   photographer,
-  isEager,
+  isFirst,
   isLazy,
   isActive = false,
   isObservable,
@@ -28,7 +25,6 @@ export const GridItem: FC<Props> = memo(({
   onView,
   id,
 }) => {
-  const imageLoad = isEager ? EAGER_LOAD : (isLazy ? LAZY_LOAD : undefined);
   const ref = useRef(null);
   useIntersectionObserver({ref, onView});
   return (
@@ -43,7 +39,8 @@ export const GridItem: FC<Props> = memo(({
         <img
           srcSet={src.medium}
           alt={alt}
-          loading={imageLoad}
+          {...(isLazy ? { loading: 'lazy' } : {})}
+          {...(isFirst ? { fetchpriority: 'high' } : {})}
         />
       </picture>
       <div className={`overlay ${isActive ? 'active' : ''}`}>

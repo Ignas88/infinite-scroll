@@ -32,7 +32,7 @@ export const PhotosGrid: FC = () => {
           <GridItem
             key={photo.id}
             {...photo}
-            isEager={index === 0}
+            isFirst={index === 0}
             isLazy={index + 1 > pageSize}
             onClick={() => handleClick(photo.id)}
             isActive={value.includes(photo.id)}
