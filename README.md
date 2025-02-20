@@ -22,8 +22,10 @@ Launches the test runner in the interactive watch mode.<br />
 
 
 ## WARNING
-Application strictly depends on `ENV` variables from `.env` file<br />
-make sure you have it in `<root>` project directory with correct values<br />
-before starting the app.
+Application uses `pexels` API for data list and strictly depends on `ENV`<br />
+variables from `.env` file, make sure you have it in `<root>` project<br />
+directory with correct value of `VITE_API_KEY` before starting the app.
+
+
 
 

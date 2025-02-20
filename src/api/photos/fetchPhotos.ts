@@ -15,7 +15,7 @@ export const fetchPhotos = async ({
   signal,
 }: Params): Promise<Photo[]> => {
   const response = await fetch(
-    `${import.meta.env.VITE_API_ENDPOINT_URL}?query=${query}&page=${page}&per_page=${per_page}&orientation=landscape`,
+    `https://api.pexels.com/v1/search?query=${query}&page=${page}&per_page=${per_page}&orientation=landscape`,
     {...options, signal},
   );
   if (!response.ok) {
